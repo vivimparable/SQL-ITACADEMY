@@ -1,0 +1,241 @@
+1.Lista el nombre de todos los productos que hay en la tabla producto.
+
+SELECT nombre
+FROM producto;
+
+2.Lista los nombres y los precios de todos los productos de la tabla producto.
+
+
+SELECT nombre, precio
+FROM producto;
+
+3.Lista todas las columnas de la tabla producto.
+
+
+SELECT *
+FROM producto;
+
+(*) se utiliza para mostrar todas las columnas
+
+4.Lista el nombre de los productos, el precio en euros y el precio en dólares estadounidenses (USD).
+
+***
+
+5.Lista el nombre de los productos, el precio en euros y el precio en dólares estadounidenses (USD). Utiliza los siguientes alias para las columnas: nombre de producto, euros, dólares.
+
+***
+
+6.Lista los nombres y los precios de todos los productos de la tabla producto, convirtiendo los nombres a mayúscula.
+
+SELECT UPPER(nombre), precio
+FROM producto;
+
+UPPER(?) Se utiliza para cambiar a mayuscula.
+(https://www.w3schools.com/sql/func_sqlserver_upper.asp)
+
+7.Lista los nombres y los precios de todos los productos de la tabla producto, convirtiendo los nombres a minúscula.
+
+SELECT LOWER(nombre), precio
+FROM producto;
+
+LOWER(?) Se utiliza para cambiar a minúscula.
+(https://www.w3schools.com/sql/func_sqlserver_lower.asp)
+
+8.Lista el nombre de todos los fabricantes en una columna, y en otra columna obtenga en mayúsculas los dos primeros caracteres del nombre del fabricante.
+
+***
+
+9.Lista los nombres y los precios de todos los productos de la tabla producto, redondeando el valor del precio.
+
+***
+
+10.Lista los nombres y los precios de todos los productos de la tabla producto, truncando el valor del precio para mostrarlo sin ninguna cifra decimal.
+
+***
+
+11.Lista el código de los fabricantes que tienen productos en la tabla producto.
+
+SELECT codigo fabricante
+FROM producto;
+
+
+12.Lista el código de los fabricantes que tienen productos en la tabla producto, eliminando los códigos que aparecen repetidos.
+
+SELECT DISTINCT codigo fabricante
+FROM producto;
+
+Distinct se coloca delante de select y se utiliza para que ignoren los nombres repetidos
+
+13.Lista los nombres de los fabricantes ordenados de forma ascendente.
+
+SELECT nombre
+FROM fabricante
+ORDER BY nombre ASC;
+
+Order by + ASC para ordenar algo de forma ascendiente. DESC si es descendiente.
+
+14.Lista los nombres de los fabricantes ordenados de forma descendente.
+
+
+SELECT nombre
+FROM fabricante
+ORDER BY nombre DESC;
+
+Order by + DESC si es descendiente.
+
+15.Lista los nombres de los productos ordenados en primer lugar por el nombre de forma ascendente y en segundo lugar por el precio de forma descendente.
+
+SELECT nombre, precio
+FROM producto
+ORDER BY nombre ASC, precio DESC;
+
+16.Devuelve una lista con las 5 primeras filas de la tabla fabricante.
+
+SELECT *
+FROM fabricante
+LIMIT 5;
+
+Limit para limitar el número de filas que quieres que aparezcan.
+
+17.Devuelve una lista con 2 filas a partir de la cuarta fila de la tabla fabricante. La cuarta fila también se debe incluir en la respuesta.
+
+SELECT *
+FROM fabricante
+LIMIT 2 OFFSET 3;
+
+Offset se utiliza para señala a partir de que fila se quiere empezar. Se empieza desde la fila 3 y hay un límite de 2 filas.
+
+18.Lista el nombre y el precio del producto más barato. (Utilice solamente las cláusulas ORDER BY y LIMIT)
+
+SELECT nombre, precio
+FROM producto
+ORDER BY precio ASC
+LIMIT 1;
+
+Se ordena ascendiente y limit 1 para que aparezca el precio más barato.
+
+19.Lista el nombre y el precio del producto más caro. (Utilice solamente las cláusulas ORDER BY y LIMIT)
+
+SELECT nombre, precio
+FROM producto
+ORDER BY precio DESC
+LIMIT 1;
+
+Se ordena descendiente y limit 1 para que aparezca el precio más caro.
+
+NOTA* ascendiente para empezar desde abajo hacia arriba descendiente para empezar desde arriba hacia abajo.
+
+20.Lista el nombre de todos los productos del fabricante cuyo código de fabricante es igual a 2.
+
+SELECT nombre
+FROM producto
+WHERE codigo fabricante = 2
+
+SQL lección dos aparece el uso del "=".
+
+21.Lista el nombre de los productos que tienen un precio menor o igual a 120€.
+
+SELECT nombre
+FROM producto
+WHERE precio >= 400
+
+NOTA* operadores
+= Igual que.
+!= No igual que.
+< Menor que.
+<= Menor o igual que.
+>Mayor que.
+>= Mayor o igual que.
+
+22.Lista el nombre de los productos que tienen un precio mayor o igual a 400€.
+
+SELECT nombre
+FROM producto
+WHERE precio >= 400;
+
+23.Lista el nombre de los productos que no tienen un precio mayor o igual a 400€.
+
+SELECT nombre
+FROM producto
+WHERE NOT precio >= 400;
+
+24.Lista todos los productos que tengan un precio entre 80€ y 300€. Sin utilizar el operador BETWEEN.
+
+***
+
+25.Lista todos los productos que tengan un precio entre 60€ y 200€. Utilizando el operador BETWEEN.
+
+SELECT *
+FROM producto
+WHERE precio BETWEEN 80 AND 300;
+
+
+
+26.Lista todos los productos que tengan un precio mayor que 200€ y que el código de fabricante sea igual a 6.
+
+SELECT *
+FROM producto
+WHERE precio > 200 AND codigo fabricante = 6;
+
+27.Lista todos los productos donde el código de fabricante sea 1, 3 o 5. Sin utilizar el operador IN.
+
+***
+
+
+28.Lista todos los productos donde el código de fabricante sea 1, 3 o 5. Utilizando el operador IN.
+
+SELECT *
+FROM producto
+WHERE codigo fabricante IN (1, 3, 5);
+
+La cadena existe en una lista. col_name IN ("A", "B", "C"). Debe ir entre mayusculas.
+
+29.Lista el nombre y el precio de los productos en céntimos (Habrá que multiplicar por 100 el valor del precio). Cree un alias para la columna que contiene el precio que se llame céntimos.
+
+***
+
+30.Lista los nombres de los fabricantes cuyo nombre empiece por la letra S.
+
+SELECT nombre
+FROM fabricante
+WHERE nombre LIKE 'S%';
+
+Like seguido de "s%" se utiliza para que aparezcan los nombres que empiezen por la letra S
+
+31.Lista los nombres de los fabricantes cuyo nombre termine por la vocal e.
+
+SELECT nombre
+FROM fabricante
+WHERE nombre LIKE '%e';
+
+32.Lista los nombres de los fabricantes cuyo nombre contenga el carácter w.
+
+SELECT nombre
+FROM fabricante
+WHERE nombre LIKE '%w%';
+
+NOTA*
+
+"?%" Para encontrar registros con esa inicial.
+"%?%" Para encontrar registros que contengan ese valor sin importar donde esten insertados (da igual si estan al principio, al final o en medio).
+
+
+33.Lista los nombres de los fabricantes cuyo nombre sea de 4 caracteres.
+
+***
+
+34.Devuelve una lista con el nombre de todos los productos que contienen la cadena Portátil en el nombre.
+
+SELECT nombre
+FROM producto
+WHERE nombre LIKE '%Portátil%';
+
+35.Devuelve una lista con el nombre de todos los productos que contienen la cadena Monitor en el nombre y tienen un precio inferior a 215 €.
+
+SELECT nombre
+FROM producto
+WHERE nombre LIKE '%Monitor%' AND precio < 215
+
+36.Lista el nombre y el precio de todos los productos que tengan un precio mayor o igual a 180€. Ordene el resultado en primer lugar por el precio (en orden descendente) y en segundo lugar por el nombre (en orden ascendente).
+
+***
