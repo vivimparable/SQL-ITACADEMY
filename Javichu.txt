@@ -19,11 +19,14 @@ FROM producto;
 
 4.Lista el nombre de los productos, el precio en euros y el precio en dólares estadounidenses (USD).
 
-***
+SELECT nombre, precio, dolares
+FROM producto;
+
+(?)
 
 5.Lista el nombre de los productos, el precio en euros y el precio en dólares estadounidenses (USD). Utiliza los siguientes alias para las columnas: nombre de producto, euros, dólares.
 
-***
+(?)
 
 6.Lista los nombres y los precios de todos los productos de la tabla producto, convirtiendo los nombres a mayúscula.
 
@@ -43,15 +46,31 @@ LOWER(?) Se utiliza para cambiar a minúscula.
 
 8.Lista el nombre de todos los fabricantes en una columna, y en otra columna obtenga en mayúsculas los dos primeros caracteres del nombre del fabricante.
 
-***
+(?)
 
 9.Lista los nombres y los precios de todos los productos de la tabla producto, redondeando el valor del precio.
 
-***
+SELECT nombre, ROUND(precio)
+FROM producto;
+
+NOTA* La función round en SQL permite indicar el número que se quiere redondear, y la cantidad de decimales que se desea tener en el resultado.
+
+Su sintaxis es:
+
+round(numero, cantidad_de_decimales);
+
+(https://parzibyte.me/blog/2019/08/02/redondear-numeros-sql/)
 
 10.Lista los nombres y los precios de todos los productos de la tabla producto, truncando el valor del precio para mostrarlo sin ninguna cifra decimal.
 
-***
+SELECT nombre, TRUNCATE(precio)
+FROM producto;
+
+Se utiliza para que se encoga solo a dos decimales un número.
+sintaxis: SELECT TRUNCATE(135.375, 2);
+
+(https://www.w3schools.com/sql/func_mysql_truncate.asp)
+
 
 11.Lista el código de los fabricantes que tienen productos en la tabla producto.
 
@@ -64,7 +83,7 @@ FROM producto;
 SELECT DISTINCT codigo fabricante
 FROM producto;
 
-Distinct se coloca delante de select y se utiliza para que ignoren los nombres repetidos
+Distinct se coloca delante de select y se utiliza para que ignoren los nombres repetidos.
 
 13.Lista los nombres de los fabricantes ordenados de forma ascendente.
 
@@ -131,8 +150,6 @@ SELECT nombre
 FROM producto
 WHERE codigo fabricante = 2
 
-SQL lección dos aparece el uso del "=".
-
 21.Lista el nombre de los productos que tienen un precio menor o igual a 120€.
 
 SELECT nombre
@@ -161,7 +178,7 @@ WHERE NOT precio >= 400;
 
 24.Lista todos los productos que tengan un precio entre 80€ y 300€. Sin utilizar el operador BETWEEN.
 
-***
+(?)
 
 25.Lista todos los productos que tengan un precio entre 60€ y 200€. Utilizando el operador BETWEEN.
 
@@ -179,7 +196,7 @@ WHERE precio > 200 AND codigo fabricante = 6;
 
 27.Lista todos los productos donde el código de fabricante sea 1, 3 o 5. Sin utilizar el operador IN.
 
-***
+(?)
 
 
 28.Lista todos los productos donde el código de fabricante sea 1, 3 o 5. Utilizando el operador IN.
@@ -192,7 +209,13 @@ La cadena existe en una lista. col_name IN ("A", "B", "C"). Debe ir entre mayusc
 
 29.Lista el nombre y el precio de los productos en céntimos (Habrá que multiplicar por 100 el valor del precio). Cree un alias para la columna que contiene el precio que se llame céntimos.
 
-***
+SELECT nombre, precio * 100
+FROM producto;
+
+El valor del precio queda multiplicado por 100.
+
+Multiplica dos expresiones (es un operador aritmético de multiplicación).
+sintaxis=expression * expression 
 
 30.Lista los nombres de los fabricantes cuyo nombre empiece por la letra S.
 
@@ -222,7 +245,7 @@ NOTA*
 
 33.Lista los nombres de los fabricantes cuyo nombre sea de 4 caracteres.
 
-***
+(?)
 
 34.Devuelve una lista con el nombre de todos los productos que contienen la cadena Portátil en el nombre.
 
@@ -238,4 +261,7 @@ WHERE nombre LIKE '%Monitor%' AND precio < 215
 
 36.Lista el nombre y el precio de todos los productos que tengan un precio mayor o igual a 180€. Ordene el resultado en primer lugar por el precio (en orden descendente) y en segundo lugar por el nombre (en orden ascendente).
 
-***
+SELECT nombre, precio
+FROM producto
+WHERE precio >= 180
+ORDER BY precio DESC, nombre ASC;
